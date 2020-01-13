@@ -27,5 +27,5 @@ RUN cd /root/ && git clone https://github.com/kamalkraj/ALBERT-TF2.0.git
 WORKDIR /root/ALBERT-TF2.0
 RUN pip install -r requirements.txt
 RUN pip install gdown
-RUN gdown --id 1FkrvdQnJR9za9Pv8cuiEXd1EI2hxx31a -O 2base.zip && unzip 2base.zip un rm 2base.zip
+RUN gdown --id 1FkrvdQnJR9za9Pv8cuiEXd1EI2hxx31a -O 2base.zip && unzip 2base.zip && rm 2base.zip
 RUN python download_glue_data.py --data_dir glue_data --tasks all
