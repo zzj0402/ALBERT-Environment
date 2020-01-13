@@ -20,8 +20,12 @@ RUN mkdir -p /usr/local/gcloud \
 # Adding the package path to local
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
-RUN git clone https://github.com/kamalkraj/ALBERT-TF2.0.git
-
 RUN apt-get install -y vim
 
-COPY . .
+RUN cd /root/ && git clone https://github.com/kamalkraj/ALBERT-TF2.0.git
+
+WORKDIR /root/ALBERT-TF2.0
+RUN pip install -r requirements.txt
+RUN pip install gdown
+RUN gdown --id 1FkrvdQnJR9za9Pv8cuiEXd1EI2hxx31a -O 2base.zip && unzip 2base.zip un rm 2base.zip
+RUN python download_glue_data.py --data_dir glue_data --tasks all
